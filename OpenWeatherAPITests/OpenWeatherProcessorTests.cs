@@ -59,6 +59,17 @@ namespace OpenWeatherAPITests
             await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetOneCallAsync());
         }
 
+        [Fact]
+        public async void GetCurrentWeatherAsync_IfApiHelperNotInitialized_ThrowArgumentException()
+        {
+            // Arrange
+            _sut.ApiKey = "1234";
+            ApiHelper.ApiClient = null;
+
+            // Assert
+            await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetCurrentWeatherAsync());
+        }
+
         public void Dispose()
         {
             //throw new NotImplementedException();
