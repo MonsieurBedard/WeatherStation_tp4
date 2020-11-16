@@ -28,6 +28,26 @@ namespace OpenWeatherAPITests
             await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetOneCallAsync());
         }
 
+        [Fact]
+        public async void GetCurrentWeatherAsync_IfApiKeyEmptyOrNull_ThrowArgumentException()
+        {
+            // if null
+
+            // Arrange
+            _sut.ApiKey = null;
+
+            // Assert
+            await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetCurrentWeatherAsync());
+
+            // if empty
+
+            // Arrange
+            _sut.ApiKey = "";
+
+            // Assert
+            await Assert.ThrowsAsync<ArgumentException>(() => _sut.GetCurrentWeatherAsync());
+        }
+
         public void Dispose()
         {
             //throw new NotImplementedException();
